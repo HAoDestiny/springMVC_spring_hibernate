@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+ <script src="./statics/js/jquery.min.js"></script>
+<style type="text/css">
+ body{margin:0px;}
+ #bg{width:100%;height:100%;top:0px;left:0px;position:absolute;filter: Alpha(opacity=50);opacity:0.5; background:#000000; display:none;}
+ #popbox{position:absolute;width:400px; height:400px; left:50%; top:50%; margin:-200px 0 0 -200px; display:none; background:#666666;}
+ </style>
+ 
+ <script type="text/javascript">
+ function pupopen(){
+          document.getElementById("bg").style.display="block";
+             document.getElementById("popbox").style.display="block" ; 
+  }
+ function pupclose(){
+ document.getElementById("bg").style.display="none";
+             document.getElementById("popbox").style.display="none" ; 
+ }
+ </script>
+</head>
+
+<body>
+
+<h1 id="msg_test_ajax"></h1><br/>
+<h1 id="msg_test_url"></h1>
+</br>
+ CSS弹出层，或者说是弹出窗口，背景半透明风格的弹出框，</br>在网站登录、用户注册、公告提示方面都非常适合使用。</br>IE和FF,OP均可以~弹出窗口,背景半透明 </br>
+　　原理:两个层,一个高度和宽度都是100%,另一个就是你要弹出的窗口的具体内容,</br>半透明在IE中是用filter: Alpha(opacity=60);在非IE中用opacity:0.60; 
+ </br></br>　　 <a href="#" onclick="pupopen()">点击这里打开窗口</a>
+ <div id="bg"></div>
+ <div id="popbox">两个层,一个高度和宽度都是100%,另一个就是你要弹出的窗口的具体内容,半透明在IE中是用filter: Alpha(opacity=60);在非IE中用opacity:0.60;
+ <br>
+ <br>
+ <br>
+ <a href="#"  onclick="pupclose()">点击关闭窗口</a>
+ </div>
+ <button id="test_btn1">test</button>
+<script type="text/javascript">
+
+    /***
+     * 通过ajax访问返回数据
+     */
+    $.ajax({
+         type: "GET",
+         url: "getTestMessage",
+         success : function (data) {
+             $("#msg_test_ajax").html("这是通过ajax访问获取的数据：" + data.messages);
+         },
+         error : function () {
+             alert("cuowu");
+         }
+     });
+
+    /***
+     * 通过获取url传递的参数来传递数据
+     * @param name
+     * @returns {null}
+     */
+     //javaScript获取url中的参数
+     function getUrlParam(name) {
+         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+         var r = window.location.search.substr(1).match(reg); //匹配目标参数
+         if (r != null) return unescape(r[2]); return null; //返回参数值
+     }
+
+     //jq方法返回url中的参数
+     (function($){
+         $.getUrlParam = function(name)
+         {
+             var reg = new RegExp("(^|&;)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if (r!=null) return unescape(r[2]); return null;
+             }
+         })(jQuery);
+
+
+    /***
+     * 通过url获取参数
+     */
+    $("#msg_test_url").html("这是通过url传递得到的数据：" + $.getUrlParam("message"));
+
+</script>
+</body>
+</html>
