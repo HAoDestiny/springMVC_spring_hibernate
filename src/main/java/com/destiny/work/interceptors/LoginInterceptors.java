@@ -39,7 +39,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 
 
         //进行判断
-        if (url.indexOf("login") > 0 || url.indexOf("getCode") > 0 || url.indexOf("register") > 0) {
+        if (url.indexOf("login") > 0 || url.indexOf("getCode") > 0 || url.indexOf("register") > 0 || url.indexOf("wap") > 0) {
             return true;
         }
 

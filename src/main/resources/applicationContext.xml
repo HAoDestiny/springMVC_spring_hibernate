@@ -74,6 +74,8 @@
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
                 <!-- 使用getCurrentSession()方法，必须配置此属性-->
                 <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ssh</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
     </bean>

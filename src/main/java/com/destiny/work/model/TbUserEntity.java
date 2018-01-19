@@ -1,47 +1,34 @@
 package com.destiny.work.model;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Destiny_hao on 2017/9/14.
+ * Created by Destiny_hao on 2017/10/26.
  */
 @Entity
 @Table(name = "tb_user", schema = "ssh", catalog = "")
 public class TbUserEntity {
-    private long id;
-    private String userName;
-    @JSONField(serialize = false)//json过滤敏感字段输出
+    private int id;
     private String password;
     private String phone;
     private String email;
     private Timestamp created;
     private Timestamp updated;
+    private String userName;
 
     @Id
     @Column(name = "id", nullable = false)
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "userName", nullable = false, length = 50)
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    @Basic
-    @Column(name = "password", nullable = false, length = 32)
+    @Column(name = "password", nullable = true, length = 32)
     public String getPassword() {
         return password;
     }
@@ -71,7 +58,7 @@ public class TbUserEntity {
     }
 
     @Basic
-    @Column(name = "created", nullable = false)
+    @Column(name = "created", nullable = true)
     public Timestamp getCreated() {
         return created;
     }
@@ -81,13 +68,23 @@ public class TbUserEntity {
     }
 
     @Basic
-    @Column(name = "updated", nullable = false)
+    @Column(name = "updated", nullable = true)
     public Timestamp getUpdated() {
         return updated;
     }
 
     public void setUpdated(Timestamp updated) {
         this.updated = updated;
+    }
+
+    @Basic
+    @Column(name = "user_name", nullable = true, length = 50)
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override
@@ -98,25 +95,25 @@ public class TbUserEntity {
         TbUserEntity that = (TbUserEntity) o;
 
         if (id != that.id) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (created != null ? !created.equals(that.created) : that.created != null) return false;
         if (updated != null ? !updated.equals(that.updated) : that.updated != null) return false;
+        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        int result = id;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (created != null ? created.hashCode() : 0);
         result = 31 * result + (updated != null ? updated.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
         return result;
     }
 }

@@ -23,6 +23,23 @@ public class BaseController {
     @Resource(name = "userService")
     private UserService userService;
 
+//    @RequestMapping(value = "/data", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String data() {
+//        JSONArray array = JSONArray.parseArray("[{\"ADDR_ID\":\"650100\",\"ADDR_NAME\":\"乌鲁木齐市\"},{\"ADDR_ID\":\"650200\",\"ADDR_NAME\":\"克拉玛依市\"},{\"ADDR_ID\":\"652100\",\"ADDR_NAME\":\"吐鲁番地区\"},{\"ADDR_ID\":\"652200\",\"ADDR_NAME\":\"哈密地区\"},{\"ADDR_ID\":\"652300\",\"ADDR_NAME\":\"昌吉回族自治州\"},{\"ADDR_ID\":\"652700\",\"ADDR_NAME\":\"博尔塔拉蒙古自治州\"},{\"ADDR_ID\":\"652800\",\"ADDR_NAME\":\"巴音郭楞蒙古自治州\"},{\"ADDR_ID\":\"652900\",\"ADDR_NAME\":\"阿克苏地区\"},{\"ADDR_ID\":\"653000\",\"ADDR_NAME\":\"克孜勒苏柯尔克孜自治州\"},{\"ADDR_ID\":\"653100\",\"ADDR_NAME\":\"喀什地区\"},{\"ADDR_ID\":\"653200\",\"ADDR_NAME\":\"和田地区\"},{\"ADDR_ID\":\"654000\",\"ADDR_NAME\":\"伊犁哈萨克自治州\"},{\"ADDR_ID\":\"654200\",\"ADDR_NAME\":\"塔城地区\"},{\"ADDR_ID\":\"654300\",\"ADDR_NAME\":\"阿勒泰地区\"},{\"ADDR_ID\":\"659000\",\"ADDR_NAME\":\"" +
+//                "省直辖行政单位\"}]");
+//        for (int i = 0; i < array.size(); i++) {
+//            JSONObject jo = array.getJSONObject(i);
+//            System.out.println(jo.getString("ADDR_NAME"));
+//            CityEntity cityEntity = new CityEntity();
+//            cityEntity.setCityName(jo.getString("ADDR_NAME"));
+//            cityEntity.setProvinceId(31);
+//            cityRepository.save(cityEntity);
+//        }
+//        System.out.println(array.size()+"");
+//        return "success";
+//    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
         return "register";
