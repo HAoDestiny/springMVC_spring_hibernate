@@ -41,7 +41,9 @@ public class LoginController {
     //提交表单@ModelAttribute("userEntity") User userEntity（key/value）
     public @ResponseBody
     Map<String, Object> login(HttpServletRequest request, HttpServletResponse response,
-                              @RequestBody User userEntity) {//提交json
+                              @RequestBody User userEntity) {
+
+        //提交json
         Map<String, Object> req_map = new HashMap<>();
         System.out.println("login-------");
 
